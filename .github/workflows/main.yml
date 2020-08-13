@@ -1,0 +1,22 @@
+
+name: Build and Deploy to Zerops.io
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # Runs a set of commands using the runners shell
+    - name: install, build, deploy
+      run: |
+        npm ci
+        npm run build:all
+        wget -O zcli cli.zerops.dev/latest/linux && chmod +x zcli
+        ./zcli login
+        ./zcli deploy test-app gui .
