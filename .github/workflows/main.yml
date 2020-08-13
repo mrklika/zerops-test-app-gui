@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2     
 
     # Runs a set of commands using the runners shell
     - name: install, build, deploy
+      env: # Or as an environment variable
+        ZEROPSLOGIN: ${{ secrets.ZEROPSLOGIN }}       
+        ZEROPSPASSWORD: ${{ secrets.ZEROPSPASSWORD }}
       run: |
         npm ci
         npm run build:all
