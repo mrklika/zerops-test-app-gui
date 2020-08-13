@@ -17,7 +17,8 @@ jobs:
       run: |
         npm ci
         npm run build:all
-        wget -O zcli cli.zerops.dev/latest/linux && chmod +x zcli
+        # download CLI, save as zcli, set permissions
+        wget -O zcli https://github.com/zeropsio/zcli/releases/download/v0.16/zcli-linux && chmod +x zcli        
         ./zcli login
         ./zcli deploy test-app nodejs0 .
 
