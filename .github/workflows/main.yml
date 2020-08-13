@@ -1,5 +1,5 @@
 
-name: Build and Deploy to Zerops.io
+name: Build and deploy to zerops.io
 
 on:
   push:
@@ -8,18 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2     
-
-    # Runs a set of commands using the runners shell
-    - name: install, build, deploy
-      env: # Or as an environment variable
+    - name: install, build, deploy  
+      env: 
         ZEROPSLOGIN: ${{ secrets.ZEROPSLOGIN }}       
-        ZEROPSPASSWORD: ${{ secrets.ZEROPSPASSWORD }}
+        ZEROPSPASSWORD: ${{ secrets.ZEROPSPASSWORD }}        
       run: |
         npm ci
         npm run build:all
         wget -O zcli cli.zerops.dev/latest/linux && chmod +x zcli
         ./zcli login
-        ./zcli deploy test-app gui .
+        ./zcli deploy test-app nodejs0 .
+
