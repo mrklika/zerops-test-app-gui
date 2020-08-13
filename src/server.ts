@@ -1,8 +1,8 @@
 import * as express from 'express';
 import { AddressInfo } from 'net';
 import { join } from 'path';
-const app = express();
 
+const app = express();
 const port = 3000;
 const path = 'dist/app';
 
