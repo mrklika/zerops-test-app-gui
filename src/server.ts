@@ -1,5 +1,4 @@
 import * as express from 'express';
-import { AddressInfo } from 'net';
 import { join } from 'path';
 
 const app = express();
